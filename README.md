@@ -1,7 +1,9 @@
 BeanBot
 =======
 
-## Installation
+A telegram bot for fun group things. 
+
+# Installation
 
 1. clone the repo
 3. cd into repo
