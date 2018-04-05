@@ -1,7 +1,7 @@
 BeanBot
 =======
 
-# Installation
+## Installation
 
 1. clone the repo
 3. cd into repo
