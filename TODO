@@ -1,0 +1,15 @@
+To Do
+=====
+
+
+# Development
+
+- [] write bot
+- [] write points module
+- [] write database module
+
+# Deployment
+
+- [] figure out where to deploy
+     (morch’s pi or a cloud instance)
+- [] deploy!
