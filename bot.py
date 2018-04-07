@@ -13,5 +13,3 @@ logging.basicConfig(format='[%(asctime)s] - %(name)s - %(levelname)s - %(message
                     level=logging.DEBUG)
 
 logger = logging.getLogger(__name__)
-
-
