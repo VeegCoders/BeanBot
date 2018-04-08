@@ -11,16 +11,16 @@ Prerequisites: [virtualenv](https://virtualenv.pypa.io/en/stable/installation/),
 ```
 git clone https://github.com/VeegCoders/BeanBot.git
 ```
-3. cd into the repo
+2. cd into the repo
 ```
 cd BeanBot
 ```
-4. initialize virtualenv
+3. initialize virtualenv
 ```
 virtualenv venv
 source venv/bin/activate
 ```
-5. install requirements
+4. install requirements
 ```
 pip install -r pip_requirements
 ```
