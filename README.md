@@ -22,4 +22,4 @@ source venv/bin/activate
 ```
 4. install requirements
 ```
-pip install -r requirements.
+pip install -r requirements.txt
