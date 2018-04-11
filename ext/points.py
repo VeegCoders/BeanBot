@@ -22,7 +22,7 @@ class Points:
 
     def get_contents(self, tablename='points'):
         cur = self.ppdb.cursor()
-        for row in cur.execute(f'select * from {tablename}'):
+        for row in cur.execute('select * from {}'.format(tablename)):
             self.pps[row[0]] = row[1]
         return self.pps
 
@@ -48,13 +48,14 @@ class Points:
                 elif op == 'mm':
                     new_value = self.pps[keyword] - 1
                     oper = 'subtracting'
-                print(f"{keyword} in dict, {oper} one.")
+                print("{} in dict, {} one.").format(keyword, oper)
                 cur.execute("UPDATE points SET value = ? WHERE key = ?", (new_value, keyword))
             else:
                 if op == 'pp':
                     new_value = 1
                 elif op == 'mm':
                     new_value = -1
-                print(f"{keyword} not in dict, setting.")
+                print("{} not in dict, setting.").format(keyword)
                 cur.execute("INSERT INTO points(key, value) VALUES(?, ?)", (keyword, new_value))
         self.get_contents()
+
