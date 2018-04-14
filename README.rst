@@ -33,7 +33,7 @@ Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>`
     pip install -r requirements.txt
 
 *******
-LICENSE
+License
 *******
 
 This project is license under the terms of the MIT license.
