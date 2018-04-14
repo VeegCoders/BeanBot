@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: urt-8 -*-
 
-from ext import Database, Points
+from ext.db import Database
+from ext.points import Points
 
 from telegram.utils.helpers import escape_markdown
 
