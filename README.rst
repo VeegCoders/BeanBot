@@ -1,12 +1,15 @@
-=======
+#######
 BeanBot
-=======
+#######
 
 A telegram bot for fun group things. 
 
-------------
+************
 Installation
-------------
+************
+
+Installation Notes
+==================
 
 Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>`_, pip
 
