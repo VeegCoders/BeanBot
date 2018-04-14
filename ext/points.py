@@ -29,10 +29,10 @@ class Points:
         self.get_contents()
         high_score = sorted(self.pps.items(), key=itemgetter(1), reverse=True)[:10]
         low_score = sorted(self.pps.items(), key=itemgetter(1))[:10]
-        high = "High scores: "
+        high = "High scores:\n"
         for k, v in high_score:
             high = high + '<b>' + k + '</b>' + ": " + str(v) + "; "
-        low = "Low scores: "
+        low = "\nLow scores:\n"
         for k, v in low_score:
             low = low + '<b>' + k + '</b>' + ": " + str(v) + "; "
         return high, low
@@ -47,14 +47,14 @@ class Points:
                 elif op == 'mm':
                     new_value = self.pps[keyword] - 1
                     oper = 'subtracting'
-                print("{} in dict, {} one.").format(keyword, oper)
+                print("{} in dict, {} one.".format(keyword, oper))
                 cur.execute("UPDATE points SET value = ? WHERE key = ?", (new_value, keyword))
             else:
                 if op == 'pp':
                     new_value = 1
                 elif op == 'mm':
                     new_value = -1
-                print("{} not in dict, setting.").format(keyword)
+                print("{} not in dict, setting.".format(keyword))
                 cur.execute("INSERT INTO points(key, value) VALUES(?, ?)", (keyword, new_value))
         self.get_contents()
 

@@ -10,7 +10,7 @@ LOGGER_CONFIG = {
         'console': {
             'class':        'logging.StreamHandler',
             'formatter':    'default',
-            'level':        'DEBUG',
+            'level':        'INFO',
         },
         'file': {
             'class':        'logging.handlers.RotatingFileHandler',
@@ -22,23 +22,26 @@ LOGGER_CONFIG = {
         },
     },
     'loggers': {
-        'root': {
-            'level':    'DEBUG'
-        },
-        'BeanBot': {
+        '': {
             'level':    'DEBUG',
             'handlers': ['console', 'file'],
-            'propagate': False,
-        },
-        'BeanBot-db': {
-            'level':    'DEBUG',
-            'handlers': ['console', 'file'],
-            'propagate':  True,
-        },
-        'BeanBot-points': {
-            'level':    'DEBUG',
-            'handlers': ['console', 'file'],
-            'propagate': True,
+            'propagate': True
+            },
         }
-    }
+    #    'BeanBot': {
+    #        'level':    'DEBUG',
+    #        'handlers': ['console', 'file'],
+    #        'propagate': False,
+    #    },
+    #    'BeanBot-db': {
+    #        'level':    'DEBUG',
+    #        'handlers': ['console', 'file'],
+    #        'propagate':  True,
+    #    },
+    #    'BeanBot-points': {
+    #        'level':    'DEBUG',
+    #        'handlers': ['console', 'file'],
+    #        'propagate': True,
+    #    }
+    
 }
