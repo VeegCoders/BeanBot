@@ -1,14 +1,19 @@
+#####
 To Do
-=====
+#####
 
-
-# Development
+===========
+Development
+===========
 
 - [] write bot
 - [] write points module
-- [] write database module
+- [x] write database module
+- [x] implement logger
 
-# Deployment
+==========
+Deployment
+==========
 
 - [] figure out where to deploy
      (morch’s pi or a cloud instance)
