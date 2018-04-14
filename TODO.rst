@@ -16,5 +16,7 @@ Deployment
 ==========
 
 - figure out where to deploy
-    (morch’s pi or a cloud instance)
+
+    - (morch’s pi or a cloud instance)
+    
 - deploy!
