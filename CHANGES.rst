@@ -10,7 +10,7 @@ Saturday, 14 April 2018
 
 - wrote the basic bot
   
-  as of `6e1884a` the bot is capable of the following:
+  as of ``6e1884a`` the bot is capable of the following:
 
   - listening to channel
   - listening for [.pp, .mm, {word}++]
