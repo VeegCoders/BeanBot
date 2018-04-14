@@ -6,7 +6,7 @@ A telegram bot for fun group things.
 Installation
 ------------
 
-Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>_`, pip
+Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>`_, pip
 
 1. Clone the repo::
 
