@@ -2,7 +2,7 @@ import logging
 
 from operator import itemgetter
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('BeanBot-points')
 logger.info('Starting Points module')
 
 class Points:
@@ -12,12 +12,11 @@ class Points:
         self.pps = self.get_contents()
 
     def load_pps(self):
-        logger.debug('* Reading points from database...')
+        logger.debug('Reading points from database...')
         cur = self.ppdb.cursor()
         with self.ppdb:
             cur.execute("""CREATE TABLE IF NOT EXISTS points
                        (key text NOT NULL UNIQUE, value int NOT NULL)""")
-        print(self.get_contents())
         return self.get_contents()
 
     def get_contents(self, tablename='points'):

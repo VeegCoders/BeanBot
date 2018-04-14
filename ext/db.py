@@ -3,7 +3,7 @@ import sqlite3
 
 class Database:
     global logger
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger('BeanBot-db')
 
     def __init__(self, database='data/db.sqlite3'):
         self.database = database

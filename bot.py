@@ -4,6 +4,8 @@ import logging.config
 import logging
 import subprocess
 
+import config
+
 from os import path
 
 from ext.db import Database
@@ -15,16 +17,11 @@ from telegram import InlineQueryResultArticle, ParseMode, \
         InputTextMessageContent
 from telegram.ext import Updater, InlineQueryHandler
 
-def startLogger(configfile='data/log.conf', logfile='log/beanbot.log'):
+def startLogger():
     if not path.isdir('log'):
         subprocess.call(['mkdir', '-p', 'log'])
-
-    if not path.exists(configfile):
-        print('Configuration file doesn\'t exist. Qutting.')
-        exit()
-    else:
-        print('Configuration file exists. Loading...')
-        logging.config.fileConfig(configfile)
+    
+    logging.config.dictConfig(config.LOGGER_CONFIG)
 
     logger = logging.getLogger('BeanBot')
     logger.debug('Logger initialized.')
@@ -36,6 +33,7 @@ def main():
     db = db.connect()
 
     pp = Points(db)
+    pps = pp.load_pps()
     return
 
 if __name__ == '__main__':
