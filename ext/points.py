@@ -26,7 +26,7 @@ class Points:
             self.pps[row[0]] = row[1]
         return self.pps
 
-    def get_score(self):
+    def get_all_scores(self):
         self.get_contents()
         high_score = sorted(self.pps.items(), key=itemgetter(1), reverse=True)[:10]
         low_score = sorted(self.pps.items(), key=itemgetter(1))[:10]
