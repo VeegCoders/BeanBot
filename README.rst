@@ -32,8 +32,12 @@ Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>`
 
     pip install -r requirements.txt
 
+5. Set your secrets with::
+
+    ./bot.py -s
+
 *******
-LICENSE
+License
 *******
 
 This project is license under the terms of the MIT license.

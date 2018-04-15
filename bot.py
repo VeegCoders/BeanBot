@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import re
+import json
+import argparse
 import logging.config
 import logging
 import subprocess
@@ -12,8 +14,6 @@ from os import path
 from ext.db import Database
 from ext.points import Points
 
-from secrets.secrets import SECRETS
-
 from telegram.utils.helpers import escape_markdown
 
 from telegram import InlineQueryResultArticle, ParseMode, \
@@ -24,12 +24,25 @@ def startLogger():
     if not path.isdir('log'):
         subprocess.call(['mkdir', '-p', 'log'])
     
+    if args.debug:
+        config.LOGGER_CONFIG['handlers']['console']['level'] = 'DEBUG'
+
     logging.config.dictConfig(config.LOGGER_CONFIG)
 
     logger = logging.getLogger(__name__)
     logger.debug('Logger initialized.')
 
     return logger
+
+def startArgParse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-d', '--debug', help='enable debugging features',
+        action='store_true')
+    parser.add_argument('-s', '--setup', help='runs the setup script',
+        action='store_true')
+
+    return parser.parse_args()
 
 def loadPoints():
     db = Database()
@@ -59,6 +72,7 @@ def handleText(bot, update):
         return re.compile('\w+[+]{2}').findall(text)
 
     message = update.message.text
+
     if message.lower().startswith('.pp '):
         ppd = message.lower()[4:]
         pp.change_record('pp', ppd)
@@ -85,6 +99,8 @@ def error(bot, update, error):
     logger.error('Update {} caused error {}'.format(update, error))
 
 def main():
+    with open('secrets/secrets.json') as sf:
+        SECRETS = json.load(sf)
 
     try:
         updater = Updater(SECRETS['TELEGRAM_BOT_TOKEN'])
@@ -105,8 +121,14 @@ def main():
     updater.idle()
 
 if __name__ == '__main__':
+    args = startArgParse()
     logger = startLogger()
-    try:
-        main()
-    except KeyboardInterrupt:
+
+    if args.setup:
+        subprocess.call('./setup.py')
         exit()
+    else:
+        try:
+            main()
+        except KeyboardInterrupt:
+            exit()  
