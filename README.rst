@@ -14,7 +14,6 @@ Installation Notes
 Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>`_, pip
 
 
-
 1. Clone the repo::
 
     git clone https://github.com/VeegCoders/BeanBot.git
@@ -40,4 +39,4 @@ Prerequisites: `virtualenv <https://virtualenv.pypa.io/en/stable/installation/>`
 License
 *******
 
-This project is license under the terms of the MIT license.
+This project is licensed under the terms of the MIT license.
