@@ -117,7 +117,13 @@ def main():
 
     updater.dispatcher.add_error_handler(error)
 
-    updater.start_polling()
+    # Commented out to test webhooks
+    # updater.start_polling()
+
+    webhookListen = '127.0.0.1'
+    webhookPort = 88
+    updater.start_webhook(listen=webhookListen, port=webhookPort)
+
     updater.idle()
 
 if __name__ == '__main__':
