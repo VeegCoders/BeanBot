@@ -121,8 +121,10 @@ def main():
     if args.debug:
         updater.start_polling()
     else:
+        webhookUrl = 'https://beanbot.jrgnsn.net/' + SECRETS['TELEGRAM_BOT_TOKEN']
         webhookListen = '127.0.0.1'
         webhookPort = 88
+        updater.setWebhook(url=webhookUrl)
         updater.start_webhook(listen=webhookListen, port=webhookPort)
 
     updater.idle()
