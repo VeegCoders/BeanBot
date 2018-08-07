@@ -43,5 +43,5 @@ LOGGER_CONFIG = {
     #        'handlers': ['console', 'file'],
     #        'propagate': True,
     #    }
-    
+
 }

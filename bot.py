@@ -14,16 +14,17 @@ from os import path
 from ext.db import Database
 from ext.points import Points
 
-from telegram.utils.helpers import escape_markdown
+# from telegram.utils.helpers import escape_markdown
 
-from telegram import InlineQueryResultArticle, ParseMode, \
-        InputTextMessageContent
+# from telegram import InlineQueryResultArticle, ParseMode, \
+#         InputTextMessageContent
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
 
 def startLogger():
     if not path.isdir('log'):
         subprocess.call(['mkdir', '-p', 'log'])
-    
+
     if args.debug:
         config.LOGGER_CONFIG['handlers']['console']['level'] = 'DEBUG'
 
@@ -34,31 +35,36 @@ def startLogger():
 
     return logger
 
+
 def startArgParse():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-d', '--debug', help='enable debugging features',
-        action='store_true')
+                        action='store_true')
     parser.add_argument('-s', '--setup', help='runs the setup script',
-        action='store_true')
+                        action='store_true')
 
     return parser.parse_args()
+
 
 def loadPoints():
     db = Database()
     db = db.connect()
 
     pp = Points(db)
-    pps = pp.load_pps()
+    pp.load_pps()
     return pp
+
 
 def greeter(bot, update):
     update.message.reply_text(
         'Hello {}'.format(update.message.from_user.first_name))
 
+
 def help(bot, update):
     """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
+
 
 def handleText(bot, update):
     """Handles text messages."""
@@ -86,6 +92,7 @@ def handleText(bot, update):
             pp.change_record('pp', k)
         update.message.reply_text('plus plus')
 
+
 def score(bot, update):
     """Sends the top high/low scores when the command /score is issued."""
     pp = loadPoints()
@@ -93,10 +100,12 @@ def score(bot, update):
     msg = '{}\n{}'.format(high, low)
     update.message.reply_text(msg, parse_mode='html')
 
+
 def error(bot, update, error):
     """Log errors caused by Updates."""
     logger = startLogger()
     logger.error('Update {} caused error {}'.format(update, error))
+
 
 def main():
     with open('secrets/secrets.json') as sf:
@@ -105,7 +114,7 @@ def main():
     try:
         updater = Updater(SECRETS['TELEGRAM_BOT_TOKEN'])
         logger.info('Bot loaded sucessfully.')
-    except:
+    except Exception:
         logger.error('Unable to load bot.')
         exit()
 
@@ -117,17 +126,18 @@ def main():
 
     updater.dispatcher.add_error_handler(error)
 
-    
     if args.debug:
         updater.start_polling()
     else:
-        webhookUrl = 'https://beanbot.jrgnsn.net/' + SECRETS['TELEGRAM_BOT_TOKEN']
+        webhookUrl = 'https://beanbot.jrgnsn.net/' \
+                    + SECRETS['TELEGRAM_BOT_TOKEN']
         webhookListen = '127.0.0.1'
         webhookPort = 88
         updater.setWebhook(url=webhookUrl)
         updater.start_webhook(listen=webhookListen, port=webhookPort)
 
     updater.idle()
+
 
 if __name__ == '__main__':
     args = startArgParse()
@@ -140,4 +150,4 @@ if __name__ == '__main__':
         try:
             main()
         except KeyboardInterrupt:
-            exit()  
+            exit()
